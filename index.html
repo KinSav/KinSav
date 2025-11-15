@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Bloodlines</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts for a Gothic look and for the queue/buttons -->
+  <!-- Google Fonts for a Gothic look -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="https://img.icons8.com/color/64/000000/vampire.png">
   <style>
@@ -31,7 +31,7 @@
       min-height: 100vh;
     }
     body {
-      padding-bottom: 85px; /* room for copyright bar */
+      padding-bottom: 85px;
     }
     header {
       text-align: center;
@@ -120,7 +120,7 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .queue-btn, .loop-btn {
+    .loop-btn {
       border: none;
       border-radius: 7px;
       cursor: pointer;
@@ -142,125 +142,12 @@
       box-shadow: 0 0 0 #0000;
       margin-right: 0.07em;
     }
-    .queue-btn.active {
-      color: var(--neon-red);
-      background: #401220;
-      box-shadow: 0 0 9px var(--neon-red), 0 0 2px #fff1;
-      text-shadow: 0 0 7px var(--neon-red), 0 1.5px 6px #fff4;
-      outline: 1.1px solid var(--neon-red);
-    }
-    .loop-btn {
-      font-size: 0.78em;
-      margin-left: 0.08em;
-    }
     .loop-btn.active {
       color: var(--neon-red);
       background: #3a0c16;
       box-shadow: 0 0 8px var(--neon-red), 0 0 2px #fff1;
       text-shadow: 0 0 8px var(--neon-red), 0 1px 6px #fff2;
       outline: 1.2px solid var(--neon-red);
-    }
-    .queue-section {
-      background: var(--queue-bg);
-      border: 2px solid var(--queue-accent);
-      border-radius: 20px;
-      margin-top: 1.5em;
-      box-shadow: 0 0 16px #9e145555, 0 2px 8px #14041277;
-      padding: 1em 0.7em 1.2em 0.7em;
-      max-width: 260px;
-      min-width: 160px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: sticky;
-      top: 1.7em;
-      z-index: 10;
-      flex: 1 1 220px;
-    }
-    .queue-title {
-      font-family: 'UnifrakturCook', 'Cinzel', serif, 'Montserrat', Arial;
-      font-size: 1.23em;
-      color: var(--neon-red);
-      margin-bottom: 0.5em;
-      text-shadow: 0 1.5px 8px #C3073Fbb, 0 2px 8px #0009;
-    }
-    ul.queued-list {
-      width: 98%;
-      list-style: none;
-      padding: 0;
-      margin: 0 0 1em 0;
-    }
-    .queued-item {
-      font-family: 'Cinzel', serif;
-      color: #faf6ec;
-      font-size: 1em;
-      margin: 0 0 0.33em 0;
-      padding: 0.33em 0.48em;
-      background: #2d1530c0;
-      border-radius: 7px;
-      box-shadow: 0 1px 7px #a31b4444;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.3em;
-      border-left: 3px solid var(--highlight);
-      transition: background 0.12s;
-    }
-    .queued-item.current {
-      color: var(--primary);
-      background: #3d233ecc;
-      border-left: 3px solid var(--primary);
-      font-weight: bold;
-      text-shadow: 0 0 4px var(--neon-red);
-    }
-    .play-btn, .remove-btn {
-      padding: 0.02em 0.41em;
-      border: none;
-      font-size: 1em;
-      font-family: 'UnifrakturCook', 'Cinzel', serif, 'Montserrat', Arial;
-      border-radius: 0.36em;
-      background: #0b051a;
-      color: var(--neon-pink);
-      cursor: pointer;
-      transition: background 0.11s, color 0.11s;
-      margin-left: 0.24em;
-      margin-right: 0.01em;
-    }
-    .queued-item.current .play-btn {
-      color: var(--neon-red);
-      text-shadow: 0 0 4px var(--neon-red);
-    }
-    .queued-item .remove-btn {
-      color: #e84c4c;
-      background: #1c0106;
-    }
-    .queue-controls {
-      margin-bottom: 0.55em;
-      display: flex;
-      gap: 0.56em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .queue-controls button {
-      font-size: 0.83em;
-      padding: 0.13em 0.8em;
-      font-family: 'UnifrakturCook', 'Cinzel', serif, 'Montserrat', Arial;
-      border: none;
-      border-radius: 7px;
-      cursor: pointer;
-      color: var(--neon-red);
-      background: #230616;
-      outline: 1px solid var(--highlight);
-      transition: all 0.13s;
-      font-weight: 700;
-      text-shadow: 0 0 7px var(--highlight), 0 1.5px 8px #0008;
-    }
-    .queue-controls button:hover {
-      background: var(--primary);
-      color: #fff;
-      outline: 1px solid #fff;
-      text-shadow: 0 0 10px #fff8;
     }
     video {
       width: 100%;
@@ -295,14 +182,6 @@
         gap: 0.5em;
         max-width: 99vw;
       }
-      .queue-section {
-        position: static;
-        max-width: 96vw;
-        width: 97vw;
-        margin-top: 1em;
-        order: 2;
-        min-width: unset;
-      }
       .gallery {
         order: 1;
         max-width: 98vw;
@@ -315,13 +194,6 @@
         gap: 0.18em;
         width: 100vw;
         max-width: 100vw;
-      }
-      .queue-section {
-        margin-top: 0.8em;
-        min-width: unset;
-        width: 98vw;
-        box-sizing: border-box;
-        padding: 0.62em 0.2em 1em 0.2em;
       }
       .gallery {
         padding: 0.7em 0.05em 2em 0.05em;
@@ -344,8 +216,6 @@
         min-width: 80px;
       }
     }
-
-    /* --- Copyright goth-glow bar at bottom --- */
     .footer-glow-area {
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -353,7 +223,7 @@
       z-index: 99;
       height: 58px;
       pointer-events: none;
-      background: transparent; /* Remove the exterior glow */
+      background: transparent;
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -398,7 +268,6 @@
         <div class="video-title">Toreador <span aria-label="rose" title="rose">🥀</span></div>
         <video controls preload="metadata" src="Toreador 🥀.mp4" allowfullscreen></video>
         <div class="btn-row">
-          <button class="queue-btn" onclick="addToQueue(this)">Add to Queue</button>
           <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
         </div>
       </div>
@@ -407,7 +276,6 @@
           <div class="video-title">Daughter of Janus</div>
           <video controls preload="metadata" src="Daughter of Janus.mp4" allowfullscreen></video>
           <div class="btn-row">
-            <button class="queue-btn" onclick="addToQueue(this)">Add to Queue</button>
             <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
           </div>
         </div>
@@ -415,7 +283,6 @@
           <div class="video-title">Malkavian</div>
           <video controls preload="metadata" src="Malkavian.mp4" allowfullscreen></video>
           <div class="btn-row">
-            <button class="queue-btn" onclick="addToQueue(this)">Add to Queue</button>
             <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
           </div>
         </div>
@@ -423,22 +290,11 @@
           <div class="video-title">Nosferatu</div>
           <video controls preload="metadata" src="Nosferatu.mp4" allowfullscreen></video>
           <div class="btn-row">
-            <button class="queue-btn" onclick="addToQueue(this)">Add to Queue</button>
             <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
           </div>
         </div>
       </div>
     </section>
-    <aside class="queue-section" id="queue-section">
-      <div class="queue-title">Song Queue</div>
-      <div class="queue-controls">
-        <button onclick="playQueue()">Play Queue</button>
-        <button onclick="clearQueue()">Clear Queue</button>
-      </div>
-      <ul class="queued-list" id="queued-list">
-        <!-- Queue items inserted here -->
-      </ul>
-    </aside>
   </div>
   <div class="footer-glow-area">
     <span class="footer-glow-copyright">
@@ -446,133 +302,6 @@
     </span>
   </div>
   <script>
-    const allSongs = [
-      { title: "Toreador 🥀", src: "Toreador 🥀.mp4" },
-      { title: "Daughter of Janus", src: "Daughter of Janus.mp4" },
-      { title: "Malkavian", src: "Malkavian.mp4" },
-      { title: "Nosferatu", src: "Nosferatu.mp4" }
-    ];
-
-    let queue = [];
-    let currentQueueIndex = -1;
-
-    // When queue is playing, always use this reference to the currently playing video element
-    let currentQueueVideo = null;
-
-    function addToQueue(btn) {
-      const card = btn.closest('.video-card');
-      const title = card.getAttribute('data-title');
-      const src = card.getAttribute('data-src');
-      if (queue.findIndex(q => q.src === src) !== -1) return;
-      queue.push({ title, src });
-      updateQueueDisplay();
-      btn.classList.add('active');
-      btn.textContent = 'Queued!';
-    }
-
-    function removeFromQueue(idx) {
-      const removed = queue.splice(idx, 1)[0];
-      updateQueueDisplay();
-      document.querySelectorAll('.video-card').forEach(card => {
-        if (card.getAttribute('data-src') === removed.src) {
-          let btn = card.querySelector('.queue-btn');
-          btn.classList.remove('active');
-          btn.textContent = 'Add to Queue';
-        }
-      });
-      if (currentQueueIndex === idx) {
-        stopQueue();
-      } else if (currentQueueIndex > idx) {
-        currentQueueIndex--;
-      }
-    }
-
-    function clearQueue() {
-      queue = [];
-      currentQueueIndex = -1;
-      updateQueueDisplay();
-      document.querySelectorAll('.queue-btn').forEach(btn => {
-        btn.classList.remove('active');
-        btn.textContent = 'Add to Queue';
-      });
-      stopQueue();
-    }
-
-    function updateQueueDisplay() {
-      const list = document.getElementById('queued-list');
-      list.innerHTML = '';
-      queue.forEach((song, i) => {
-        const li = document.createElement('li');
-        li.className = 'queued-item' + (i === currentQueueIndex ? ' current' : '');
-        // Play button now uses the guitar
-        li.innerHTML = `
-          <span>${song.title}</span>
-          <span>
-            <button class="play-btn" onclick="playFromQueue(${i})" title="Play">🎸</button>
-            <button class="remove-btn" onclick="removeFromQueue(${i})" title="Remove">&#10005;</button>
-          </span>
-        `;
-        list.appendChild(li);
-      });
-    }
-
-    // More robust: only one queue video is playing, everything else (gallery, etc) is independent
-    function playFromQueue(idx) {
-      if (queue.length === 0) return;
-
-      // Pause all videos and remove previous ended events
-      document.querySelectorAll('.video-card video').forEach(v => {
-        v.pause();
-        v.currentTime = 0;
-        v.onended = null;
-      });
-
-      currentQueueIndex = idx;
-      updateQueueDisplay();
-      const song = queue[idx];
-      const videoCard = Array.from(document.querySelectorAll('.video-card')).find(
-        c => c.getAttribute('data-src') === song.src
-      );
-      if (videoCard) {
-        const video = videoCard.querySelector('video');
-        currentQueueVideo = video;
-        // Remove prior ended event from ALL videos first
-        document.querySelectorAll('.video-card video').forEach(v => v.onended = null);
-
-        // Add new ended event only to the currently playing video
-        video.onended = function() {
-          if (queue.length === 0) return;
-          // Loop to top if on last, else go next
-          if (currentQueueIndex < queue.length - 1) {
-            playFromQueue(currentQueueIndex + 1);
-          } else {
-            playFromQueue(0);
-          }
-        };
-
-        video.loop = false; // Don't infinite-loop in queue play
-        video.play();
-        videoCard.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }
-
-    function playQueue() {
-      if (queue.length === 0) return;
-      playFromQueue(0);
-    }
-
-    function stopQueue() {
-      // Pause every video and clear onended event
-      document.querySelectorAll('.video-card video').forEach(v => {
-        v.pause();
-        v.onended = null;
-      });
-      currentQueueIndex = -1;
-      updateQueueDisplay();
-    }
-
-    window.addEventListener("resize", updateQueueDisplay);
-
     function toggleLoop(btn) {
       const video = btn.parentElement.parentElement.querySelector("video");
       video.loop = !video.loop;
@@ -585,20 +314,7 @@
       }
     }
 
-    // Pause queue when user plays a video directly in gallery (for separation)
-    document.querySelectorAll('.video-card video').forEach((vid) => {
-      vid.addEventListener('play', function() {
-        const src = vid.currentSrc.split('/').pop();
-        if(currentQueueIndex !== -1) {
-          const cur = queue[currentQueueIndex];
-          if(!vid.loop && (!cur || cur.src !== src)) {
-            stopQueue();
-          }
-        }
-      });
-    });
-
-    // Fullscreen on double click
+    // Double click to fullscreen
     document.querySelectorAll("video").forEach((vid) => {
       if (!vid.hasAttribute("allowfullscreen")) vid.setAttribute("allowfullscreen", "allowfullscreen");
       vid.addEventListener('dblclick', function() {
@@ -608,8 +324,6 @@
         else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
       });
     });
-
-    updateQueueDisplay();
   </script>
 </body>
 </html>
