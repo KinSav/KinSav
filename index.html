@@ -307,7 +307,7 @@
       z-index: 99;
       height: 58px;
       pointer-events: none;
-      background: transparent;
+      background: transparent; /* Remove the exterior glow */
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -394,9 +394,7 @@
     </aside>
   </div>
   <div class="footer-glow-area">
-    <span class="footer-glow-copyright">
-      &copy; 2025 KinSav
-    </span>
+    <span class="footer-glow-copyright">&copy; 2025 KinSav</span>
   </div>
   <script>
     const allSongs = [
@@ -407,6 +405,7 @@
     ];
     let queue = [];
     let currentQueueIndex = -1;
+
     function addToQueue(btn) {
       const card = btn.closest('.video-card');
       const title = card.getAttribute('data-title');
@@ -417,6 +416,7 @@
       btn.classList.add('active');
       btn.textContent = 'Queued!';
     }
+
     function removeFromQueue(idx) {
       const removed = queue.splice(idx, 1)[0];
       updateQueueDisplay();
@@ -430,6 +430,7 @@
       if (currentQueueIndex === idx) stopQueue();
       else if (currentQueueIndex > idx) currentQueueIndex--;
     }
+
     function clearQueue() {
       queue = [];
       currentQueueIndex = -1;
@@ -440,6 +441,7 @@
       });
       stopQueue();
     }
+
     function updateQueueDisplay() {
       const list = document.getElementById('queued-list');
       list.innerHTML = '';
@@ -456,10 +458,12 @@
         list.appendChild(li);
       });
     }
+
     function playQueue() {
       if (queue.length === 0) return;
       playFromQueue(0);
     }
+
     function skipQueue() {
       if (queue.length === 0) return;
       if (currentQueueIndex === -1) {
@@ -470,42 +474,49 @@
         playFromQueue(0);
       }
     }
-    function attachEndedListener(video) {
-      video.onended = null;
-      video.addEventListener('ended', function handler() {
-        if (queue.length === 0) return;
-        if (currentQueueIndex < queue.length - 1) {
-          playFromQueue(currentQueueIndex + 1);
-        } else {
-          playFromQueue(0);
-        }
-      }, { once: true });
-    }
+
+    // Always ensures only the currently playing video has the ended handler!
     function playFromQueue(idx) {
       if (queue.length === 0) return;
       currentQueueIndex = idx;
       updateQueueDisplay();
       const song = queue[idx];
-      let videoCard = Array.from(document.querySelectorAll('.video-card')).find(
-        c => c.getAttribute('data-src') === song.src
-      );
+
+      // Stop and clean up all other videos and handlers
+      document.querySelectorAll('.video-card video').forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+        v.onended = null;
+      });
+
+      let videoCard = Array.from(document.querySelectorAll('.video-card'))
+        .find(c => c.getAttribute('data-src') === song.src);
       if (videoCard) {
         let video = videoCard.querySelector('video');
-        document.querySelectorAll('video').forEach(v => {
-          v.pause();
-          v.currentTime = 0;
-          v.onended = null;
-        });
-        attachEndedListener(video);
+        video.onended = function() {
+          if (queue.length === 0) return;
+          if (currentQueueIndex < queue.length - 1) {
+            playFromQueue(currentQueueIndex + 1);
+          } else {
+            playFromQueue(0); // loop
+          }
+        };
         video.play();
         videoCard.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
+
     function stopQueue() {
+      document.querySelectorAll('.video-card video').forEach(v => {
+        v.pause();
+        v.onended = null;
+      });
       currentQueueIndex = -1;
       updateQueueDisplay();
     }
+
     window.addEventListener("resize", updateQueueDisplay);
+
     function toggleLoop(btn) {
       const video = btn.parentElement.parentElement.querySelector("video");
       video.loop = !video.loop;
@@ -517,6 +528,7 @@
         btn.textContent = "Loop: Off";
       }
     }
+
     document.querySelectorAll('.video-card video').forEach((vid) => {
       vid.addEventListener('play', function() {
         const src = vid.currentSrc.split('/').pop();
@@ -526,6 +538,7 @@
         }
       });
     });
+
     document.querySelectorAll("video").forEach((vid) => {
       if (!vid.hasAttribute("allowfullscreen")) vid.setAttribute("allowfullscreen", "allowfullscreen");
       vid.addEventListener('dblclick', function() {
@@ -535,6 +548,7 @@
         else if (vid.msRequestFullscreen) vid.msRequestFullscreen();
       });
     });
+
     updateQueueDisplay();
   </script>
 </body>
