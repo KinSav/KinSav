@@ -1,45 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Video Gallery</title>
+  <meta charset="UTF-8" />
+  <title>Bloodlines</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for a Gothic look -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://img.icons8.com/color/64/000000/vampire.png">
   <style>
-    body { font-family: sans-serif; margin: 40px; background: #101011; color: #EAEAEA; }
-    h1 { color: #D09EFF; }
-    h2 { color: #B5A3FF; }
-    .video-block { margin-bottom: 32px; }
-    video { width: 100%; max-width: 720px; background: #222; border-radius: 10px; }
+    :root {
+      --main-bg: #111016;
+      --accent-bg: #191724;
+      --card-bg: rgba(29, 25, 46, 0.97);
+      --primary: #C3073F;
+      --secondary: #6F2232;
+      --text: #F8F8FF;
+      --highlight: #A31B44;
+      --shadow: 0 8px 30px #000a;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #12030a, #1c1727 85%);
+      color: var(--text);
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 2em 1em 1em 1em;
+    }
+    .bloodlines-title {
+      font-family: 'Cinzel', serif;
+      font-size: 3em;
+      color: var(--primary);
+      text-shadow: 0 2px 12px var(--highlight), 0 0 24px #0008;
+      letter-spacing: 0.1em;
+    }
+    .subtitle {
+      font-size: 1.1em;
+      color: #aaa;
+      margin-top: 0.4em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      justify-content: center;
+      padding: 2em 1em 3em 1em;
+    }
+    .video-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: 1.7em;
+      padding: 1.1em 1.2em 2em 1.2em;
+      max-width: 410px;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1.5px solid var(--highlight);
+      transition: transform 0.20s;
+    }
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.025);
+      border-color: var(--primary);
+      box-shadow: 0 14px 48px #A31B44bb;
+    }
+    .video-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35em;
+      font-weight: 700;
+      margin: 0.6em 0 0.3em 0;
+      color: var(--primary);
+      text-shadow: 0 1px 8px #000c;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+    .video-desc {
+      font-size: 0.93em;
+      color: #C8B5C1;
+      margin-bottom: 0.7em;
+      text-align: center;
+    }
+    video {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 1em;
+      margin-bottom: .2em;
+      box-shadow: 0 2px 22px #C3073F55, 0 0 0 #0000;
+      background: #22201a;
+      outline: 2px solid var(--secondary);
+    }
+    @media (max-width: 700px) {
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+        padding: 1em 0.1em 3em 0.1em;
+      }
+      .bloodlines-title {
+        font-size: 2em;
+      }
+      .video-card {
+        max-width: 98vw;
+      }
+      video {
+        max-width: 95vw;
+      }
+    }
+    footer {
+      text-align: center;
+      color: #45344d;
+      padding: 1.5em 0 1em 0;
+      font-size: .98em;
+      border-top: 1px solid #232;
+      margin-top: 2em;
+      letter-spacing: 0.03em;
+    }
   </style>
 </head>
 <body>
-  <h1>My Video Gallery</h1>
-  <div class="video-block">
-    <h2>Daughter of Janus</h2>
-    <video controls>
-      <source src="Daughter of Janus.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <div class="video-block">
-    <h2>Malkavian</h2>
-    <video controls>
-      <source src="Malkavian.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <div class="video-block">
-    <h2>Nosferatu</h2>
-    <video controls>
-      <source src="Nosferatu.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <div class="video-block">
-    <h2>Toreador 🥀</h2>
-    <video controls>
-      <source src="Toreador 🥀.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <header>
+    <div class="bloodlines-title">Bloodlines</div>
+    <div class="subtitle">Vampire: The Masquerade Instrumentals by KinSav</div>
+  </header>
+  <section class="gallery">
+    <div class="video-card">
+      <div class="video-title">Daughter of Janus</div>
+      <div class="video-desc">A haunting melody echoing a forgotten lineage.</div>
+      <video controls src="Daughter of Janus.mp4"></video>
+    </div>
+    <div class="video-card">
+      <div class="video-title">Malkavian</div>
+      <div class="video-desc">The eerie cadence of the fractured mind.</div>
+      <video controls src="Malkavian.mp4"></video>
+    </div>
+    <div class="video-card">
+      <div class="video-title">Nosferatu</div>
+      <div class="video-desc">Darkness dwells where secrets are currency.</div>
+      <video controls src="Nosferatu.mp4"></video>
+    </div>
+    <div class="video-card">
+      <div class="video-title">Toreador <span aria-label="rose" title="rose">🥀</span></div>
+      <div class="video-desc">Beauty and tragedy in eternal night.</div>
+      <video controls src="Toreador 🥀.mp4"></video>
+    </div>
+  </section>
+  <footer>
+    &copy; 2025 KinSav — Blood and melody under the midnight masque.
+  </footer>
 </body>
 </html>
