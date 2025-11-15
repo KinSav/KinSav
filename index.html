@@ -46,12 +46,10 @@
     }
     .gallery {
       display: flex;
-      flex-wrap: wrap;
-      gap: 2em;
-      justify-content: center;
-      padding: 2em 1em 3em 1em;
       flex-direction: column;
       align-items: center;
+      gap: 2em;
+      padding: 2em 1em 3em 1em;
     }
     .row-gallery {
       display: flex;
@@ -72,6 +70,7 @@
       align-items: center;
       border: 1.5px solid var(--highlight);
       transition: transform 0.20s;
+      position: relative;
     }
     .video-card:hover {
       transform: translateY(-6px) scale(1.025);
@@ -87,6 +86,28 @@
       text-shadow: 0 1px 8px #000c;
       letter-spacing: 0.04em;
       text-align: center;
+    }
+    .loop-btn {
+      margin-top: 0.4em;
+      padding: 0.32em 1.1em;
+      border: none;
+      border-radius: 8px;
+      background: #2a1f36;
+      color: #db7aff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, box-shadow 0.2s;
+      box-shadow: 0 0 0 #0000;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    .loop-btn.active {
+      color: #28e222;
+      background: #5b2544;
+      box-shadow: 0 0 12px #44ff4477;
+      font-weight: bold;
+    }
+    .loop-btn:active {
+      box-shadow: none;
     }
     video {
       width: 100%;
@@ -138,24 +159,41 @@
     <div class="video-card">
       <div class="video-title">Toreador <span aria-label="rose" title="rose">🥀</span></div>
       <video controls src="Toreador 🥀.mp4"></video>
+      <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
     </div>
     <div class="row-gallery">
       <div class="video-card">
         <div class="video-title">Daughter of Janus</div>
         <video controls src="Daughter of Janus.mp4"></video>
+        <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
       </div>
       <div class="video-card">
         <div class="video-title">Malkavian</div>
         <video controls src="Malkavian.mp4"></video>
+        <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
       </div>
       <div class="video-card">
         <div class="video-title">Nosferatu</div>
         <video controls src="Nosferatu.mp4"></video>
+        <button class="loop-btn" onclick="toggleLoop(this)">Loop: Off</button>
       </div>
     </div>
   </section>
   <footer>
     &copy; 2025 KinSav
   </footer>
+  <script>
+    function toggleLoop(btn) {
+      const video = btn.parentElement.querySelector("video");
+      video.loop = !video.loop;
+      if(video.loop) {
+        btn.classList.add("active");
+        btn.textContent = "Loop: On";
+      } else {
+        btn.classList.remove("active");
+        btn.textContent = "Loop: Off";
+      }
+    }
+  </script>
 </body>
 </html>
